@@ -1,7 +1,7 @@
 .square{
     height:20px;
     width:20px;
-    border: 1px solid;
+    border: 0.1px solid rgba(85, 85, 85, 0.253);;
 }
 
 .mainBoard{

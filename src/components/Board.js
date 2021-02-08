@@ -15,10 +15,12 @@ class Board extends Component {
             },
             food: {
             },
-            tail: [],
+            tail: [
+            ],
             score: 0,
             SnakeMoveInterval: 100,
-            currentDirection: 'right'
+            currentDirection: 'right',
+            numberOfTails: 3
         }
     }
 
@@ -26,17 +28,17 @@ class Board extends Component {
         var grid = [];
         for (let row = 0; row < this.state.rows; row++) {
             for (let col = 0; col < this.state.cols; col++) {
-                let isFood = false, isHead = false,isTail=false;
+                let isFood = false, isHead = false, isTail = false;
                 if (row === this.state.food.row && col === this.state.food.col) {
                     isFood = true;
                 }
                 if (row === this.state.snake.row && col === this.state.snake.col) {
                     isHead = true;
                 }
-                this.state.tail.map(t=>{
-                    if(row === t.row && col === t.col){
+                this.state.tail.map(t => {
+                    if (row === t.row && col === t.col) {
                         isTail = true;
-                    } 
+                    }
                 })
                 grid.push({
                     row,
@@ -132,23 +134,73 @@ class Board extends Component {
             this.moveSnakeInDirection(currentDirection)
         }
     }
+    // determinePositionForTail = () => {
+    //     let currentSnakePos = this.state.snake;
+    //     if (this.state.numberOfTails === 0) {
+    //         if (this.state.currentDirection === 'right') {
+    //             return {
+    //                 row: currentSnakePos.row,
+    //                 col: currentSnakePos.col++,
+    //             }
+    //         }
+    //         else if (this.state.currentDirection === 'left') {
+    //             return {
+    //                 row: currentSnakePos.row,
+    //                 col: currentSnakePos.col--,
+    //             }
+    //         }
+    //         else if (this.state.currentDirection === 'down') {
+    //             return {
+    //                 row: currentSnakePos.row++,
+    //                 col: currentSnakePos.col,
+    //             }
+    //         }
+    //         else if (this.state.currentDirection === 'up') {
+    //             return {
+    //                 row: currentSnakePos.row--,
+    //                 col: currentSnakePos.col,
+    //             }
+    //         }
+    //     } else {
+
+    //     }
+    // }
     tempFunctionJustToScrewYou = () => {
-        let temp = this.state.snake;
-        let tail = this.state.tail;
+        let snake = this.state.snake;
+        let noOfTails = this.state.numberOfTails;
+        var arr = [];
+        for (let i = 1; i <= noOfTails; i++) {
+            if (this.state.currentDirection === 'right' || this.state.currentDirection === 'left') {
+                arr.push({
+                    row: snake.row,
+                    col: this.state.currentDirection === 'right' ? snake.col++ : snake.col--
+                })
+            }
+            else {
+                arr.push({
+                    row: this.state.currentDirection === 'up' ? snake.row-- : snake.row++,
+                    col: snake.col
+                })
+            }
+        }
+        // let newPos = this.determinePositionForTail();
+
         this.setState({
-            tail:[...this.state.tail,temp]
+            tail: arr
         })
         this.renderGrid();
     }
-   
+
     updatePosition = () => {
         setInterval(() => {
+
             this.moveSnakeInDirection();
+            this.tempFunctionJustToScrewYou();
         }, 1000);
 
-        setTimeout(() => {
-            this.tempFunctionJustToScrewYou();
-        }, 3000);
+        // setTimeout(() => {
+        //     this.tempFunctionJustToScrewYou();
+        // }, 3000);
     }
     render() {
         const listOfGrids = this.state.grid.map(grid => {
