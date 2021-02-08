@@ -20,7 +20,7 @@ class Board extends Component {
             score: 0,
             SnakeMoveInterval: 100,
             currentDirection: 'right',
-            numberOfTails: 3
+            numberOfTails: 5
         }
     }
 
@@ -55,6 +55,11 @@ class Board extends Component {
     }
     moveSnakeInDirection = () => {
         var snakeHEADState = this.state.snake;
+        let tail = this.state.tail;
+        tail.unshift({
+            row: snakeHEADState.row,
+            col: snakeHEADState.col,
+        })
         let direction = this.state.currentDirection;
         if (direction === 'right') {
             snakeHEADState.col++;
@@ -69,7 +74,8 @@ class Board extends Component {
             snakeHEADState.row++;
         }
         this.setState({
-            snake: snakeHEADState
+            snake: snakeHEADState,
+            tail: tail.slice(0, this.state.numberOfTails)
         });
         this.renderGrid();
     }
@@ -102,6 +108,7 @@ class Board extends Component {
         document.body.addEventListener('keydown', this.handleKeyPress);
         this.renderGrid();
         this.updatePosition();
+        // this.tempFunctionJustToScrewYou();
     }
     componentWillUnmount() {
         document.body.removeEventListener('keydown', this.handleKeyPress);
@@ -134,57 +141,17 @@ class Board extends Component {
             this.moveSnakeInDirection(currentDirection)
         }
     }
-    // determinePositionForTail = () => {
-    //     let currentSnakePos = this.state.snake;
-    //     if (this.state.numberOfTails === 0) {
-    //         if (this.state.currentDirection === 'right') {
-    //             return {
-    //                 row: currentSnakePos.row,
-    //                 col: currentSnakePos.col++,
-    //             }
-    //         }
-    //         else if (this.state.currentDirection === 'left') {
-    //             return {
-    //                 row: currentSnakePos.row,
-    //                 col: currentSnakePos.col--,
-    //             }
-    //         }
-    //         else if (this.state.currentDirection === 'down') {
-    //             return {
-    //                 row: currentSnakePos.row++,
-    //                 col: currentSnakePos.col,
-    //             }
-    //         }
-    //         else if (this.state.currentDirection === 'up') {
-    //             return {
-    //                 row: currentSnakePos.row--,
-    //                 col: currentSnakePos.col,
-    //             }
-    //         }
-    //     } else {
 
-    //     }
-    // }
-    tempFunctionJustToScrewYou = () => {
-        let snake = this.state.snake;
-        let noOfTails = this.state.numberOfTails;
+    shiftTail = (headPosition) => {
         var arr = [];
-        for (let i = 1; i <= noOfTails; i++) {
-            if (this.state.currentDirection === 'right' || this.state.currentDirection === 'left') {
-                arr.push({
-                    row: snake.row,
-                    col: this.state.currentDirection === 'right' ? snake.col++ : snake.col--
-                })
-            }
-            else {
-                arr.push({
-                    row: this.state.currentDirection === 'up' ? snake.row-- : snake.row++,
-                    col: snake.col
-                })
+        for (let i = 0; i < this.state.numberOfTails; i++) {
+            if (i == 0) {
+                arr.push(headPosition)
+            } else {
+
+
             }
         }
-        // let newPos = this.determinePositionForTail();
-
         this.setState({
             tail: arr
         })
@@ -195,17 +162,16 @@ class Board extends Component {
         setInterval(() => {
 
             this.moveSnakeInDirection();
-            this.tempFunctionJustToScrewYou();
-        }, 1000);
-
-        // setTimeout(() => {
-        //     this.tempFunctionJustToScrewYou();
-        // }, 3000);
+        }, 200);
     }
     render() {
         const listOfGrids = this.state.grid.map(grid => {
             return <div key={grid.row.toString() + '-' + grid.col.toString()} className={
-                grid.isFood ? 'food-item square' : grid.isHead ? 'snake-head square' : grid.isTail ? 'snake-tail square' : 'square'
+                grid.isHead
+                    ? 'square snake-head' : grid.isTail
+                        ? 'square snake-tail' : grid.isFood
+                            ? 'square food-item' : 'square'
+
             }></div>
         })
         return <div className="mainBoard">{listOfGrids}</div>
