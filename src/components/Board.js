@@ -162,7 +162,7 @@ class Board extends Component {
         setInterval(() => {
 
             this.moveSnakeInDirection();
-        }, 200);
+        }, 300);
     }
     render() {
         const listOfGrids = this.state.grid.map(grid => {
