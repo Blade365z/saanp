@@ -1,12 +1,12 @@
 .square{
-    height:30px;
-    width:30px;
+    height:20px;
+    width:20px;
     border: 1px solid;
 }
 
 .mainBoard{
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -19,4 +19,7 @@
 
 .snake-head{
     background-color: black;
+}
+.snake-tail{
+    background-color: blue;
 }
