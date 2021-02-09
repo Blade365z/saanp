@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/saanp/static/css/main.d2e734e4.chunk.css",
+    "main.css": "/saanp/static/css/main.a7e76176.chunk.css",
     "main.js": "/saanp/static/js/main.ce1b2bec.chunk.js",
     "main.js.map": "/saanp/static/js/main.ce1b2bec.chunk.js.map",
     "runtime-main.js": "/saanp/static/js/runtime-main.fc27538a.js",
@@ -8,13 +8,13 @@
     "static/js/2.777b9d06.chunk.js": "/saanp/static/js/2.777b9d06.chunk.js",
     "static/js/2.777b9d06.chunk.js.map": "/saanp/static/js/2.777b9d06.chunk.js.map",
     "index.html": "/saanp/index.html",
-    "static/css/main.d2e734e4.chunk.css.map": "/saanp/static/css/main.d2e734e4.chunk.css.map",
+    "static/css/main.a7e76176.chunk.css.map": "/saanp/static/css/main.a7e76176.chunk.css.map",
     "static/js/2.777b9d06.chunk.js.LICENSE.txt": "/saanp/static/js/2.777b9d06.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fc27538a.js",
     "static/js/2.777b9d06.chunk.js",
-    "static/css/main.d2e734e4.chunk.css",
+    "static/css/main.a7e76176.chunk.css",
     "static/js/main.ce1b2bec.chunk.js"
   ]
 }
