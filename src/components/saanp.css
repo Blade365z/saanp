@@ -29,6 +29,7 @@
   width: 100%;
   text-align: center;
 }
+
 @media (min-width:320px) {
     /* smartphones, iPhone, portrait 480x320 phones */
     .square {
@@ -47,12 +48,16 @@
     }
     .controlBtns{
     margin-top: 55px;
+    display: block;
       
     }
 
 }
 
 @media (min-width:481px) {
+    .controlBtns{
+        display: none;
+    }
     /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
 }
 
@@ -72,9 +77,15 @@
         flex-direction: row;
         flex-wrap: wrap;
     }
+    .controlBtns{
+        display: block;
+    }
 }
 
 @media (min-width:961px) {
+    .controlBtns{
+        display: block;
+    }
     /* tablet, landscape iPad, lo-res laptops ands desktops */
 }
 
@@ -94,8 +105,14 @@
         flex-direction: row;
         flex-wrap: wrap;
     }
+    .controlBtns{
+        display: none;
+    }
 }
 
 @media (min-width:1281px) {
+    .controlBtns{
+        display: none;
+    }
     /* hi-res laptops and desktops */
 }
