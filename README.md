@@ -1,3 +1,3 @@
 # Saanp
 ## Just a minimilistic snake game for fun.
-Development going on 
+Find at : https://blade365z.github.io/saanp/
